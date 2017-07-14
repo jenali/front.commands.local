@@ -9,7 +9,7 @@ export class LoggedInGuard implements CanActivate {
      * Is login user.
      * @type {boolean}
      */
-    public loggedIn:boolean = false;
+    public loggedIn: boolean = false;
 
     constructor(private router: Router) {
         this.loggedIn = !!localStorage.getItem('Authorization');
@@ -32,15 +32,14 @@ export class LoggedInGuard implements CanActivate {
      * Is Logged in.
      * @returns {boolean}
      */
-    private isLoggedIn():boolean {
+    private isLoggedIn(): boolean {
         return this.loggedIn;
     }
 
     /**
      * Logout.
      */
-    public logout():void
-    {
+    public logout(): void {
         localStorage.removeItem('Authorization');
         this.loggedIn = false;
     }
@@ -49,8 +48,8 @@ export class LoggedInGuard implements CanActivate {
      * Set Token in storage and login.
      * @param $token
      */
-    public setToken($token:string):void {
-        localStorage.setItem('Authorization',$token);
+    public setToken($token: string): void {
+        localStorage.setItem('Authorization', $token);
         this.loggedIn = true;
         this.router.navigate(['commands'])
     }

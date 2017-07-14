@@ -1,20 +1,58 @@
 <div class="commands">
-  <h1>Commands list</h1>
-  <table>
-    <thead>
-      <th>Name</th>
-      <th>Country</th>
-      <th>City</th>
-      <th>Actions</th>
-    </thead>
+    <h1>Commands list</h1>
+    <table>
+        <thead>
+        <th>id</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Actions</th>
+        </thead>
 
-    <tbody>
-    <tr>
-      <td>assadc</td>
-      <td>sdvsdvsdv</td>
-      <td>sdvsdvsdv</td>
-      <td>sdvdfbfgb</td>
-    </tr>
-    </tbody>
-  </table>
+        <tbody>
+        <!--create commands-->
+        <tr *ngIf="canCreate" class="create">
+            <td>
+                #
+            </td>
+            <td>
+                <input placeholder="Name" [(ngModel)]="createCommand.name">
+            </td>
+            <td>
+                <input placeholder="Country" [(ngModel)]="createCommand.country">
+
+            </td>
+            <td>
+                <input placeholder="City" [(ngModel)]="createCommand.city">
+            </td>
+            <td>
+                <button (click)="onSave()">Create</button>
+            </td>
+        </tr>
+
+        <tr *ngFor="let command of commands">
+            <td width="30">
+                <span>{{command.id}}</span>
+            </td>
+            <td>
+                <span *ngIf="currentCommand != command">{{command.name}}</span>
+                <input *ngIf="currentCommand == command" [(ngModel)]="currentCommand.name">
+            </td>
+            <td>
+                <span *ngIf="currentCommand != command">{{command.country}}</span>
+                <input *ngIf="currentCommand == command" [(ngModel)]="currentCommand.country">
+            </td>
+            <td>
+                <span *ngIf="currentCommand != command">{{command.city}}</span>
+                <input *ngIf="currentCommand == command" [(ngModel)]="currentCommand.city">
+            </td>
+            <td width="120">
+                <button *ngIf="canEdit&&currentCommand != command" (click)="onEdit(command.id)">Edit</button>
+                <button *ngIf="currentCommand == command" (click)="onUpdate(true)">Save</button>
+                <button *ngIf="currentCommand == command" (click)="onUpdate(false)">Cancel</button>
+                <button *ngIf="canDelete&&currentCommand != command" (click)="onDelete(command.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>

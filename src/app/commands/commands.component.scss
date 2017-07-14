@@ -8,6 +8,7 @@
 
   h1 {
     text-align: center;
+    padding-top: 20px;
   }
 
   table {
@@ -18,9 +19,36 @@
   }
   th {
     border: 1px solid black;
+    font-size: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
   }
 
   tbody {
     border: 1px solid black;
+
+
+  }
+  .create {
+     td {
+       border: 1px solid black;
+     }
+    button {
+      height: 34px;
+      width: 100%;
+      font-size: 14px;
+    }
+  }
+  input {
+    width: 100%;
+    display: block;
+    background-color: #fff;
+    border: 1px solid #d2d6de;
+    height: 34px;
+    font-size: 14px;
+    padding: 6px 12px;
+    box-sizing: border-box;
+    outline:none;
+
   }
 }

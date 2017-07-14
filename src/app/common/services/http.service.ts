@@ -30,10 +30,12 @@ export class HttpService extends Http {
             }
             options.headers.set( 'Authorization', `Bearer ${ token }` );
             options.headers.set( 'Content-Type', `application/json` );
+            options.headers.set('Accept','application/json')
         } else {
             // we have to add the token to the url object
             url.headers.set( 'Authorization', `Bearer ${ token }` );
             url.headers.set( 'Content-Type', `application/json` );
+            url.headers.set('Accept','application/json')
         }
         return super.request( url, options ).catch( this.catchAuthError() );
     }

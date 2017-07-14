@@ -4,6 +4,7 @@ import {ApiService} from '../common/services/api.service';
 import {Request} from '../common/interfaces/request';
 import {LoginForm} from '../common/interfaces/login-form';
 import {LoggedInGuard} from '../common/services/logged-in.guard'
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -12,13 +13,27 @@ import {LoggedInGuard} from '../common/services/logged-in.guard'
 })
 export class LoginComponent implements OnInit {
 
+    /**
+     * Path to api login,
+     * @type {string}
+     */
     readonly loginPath = '/v1/login';
 
+    /**
+     * Login form.
+     */
     public loginForm: any;
 
+    /**
+     * Request params.
+     */
     private request: Request;
 
-    constructor(private fb: FormBuilder, private api: ApiService, private loggedInGuard: LoggedInGuard) {
+    constructor(private fb: FormBuilder,
+                private api: ApiService,
+                private router: Router,
+                private loggedInGuard: LoggedInGuard
+    ) {
         this.loginForm = this.fb.group({
             'email': ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.email])],
             'password': ['', Validators.compose([Validators.required, Validators.minLength(3)])]
@@ -28,14 +43,18 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
     }
 
+    /**
+     * Event on submit login form.
+     * @param loginForm
+     */
     protected onSubmit(loginForm: LoginForm) {
-        if (this.sendLogin(loginForm)) {
-
-        } else {
-
-        }
+        this.sendLogin(loginForm)
     }
 
+    /**
+     * Send to api login form.
+     * @param loginForm
+     */
     private sendLogin(loginForm: LoginForm) {
         this.request = {
             'url': this.loginPath,
