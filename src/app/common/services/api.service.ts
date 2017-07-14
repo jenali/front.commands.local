@@ -55,7 +55,7 @@ export class ApiService {
      * @param request
      * @returns {Promise<any>}
      */
-    public apiCreate ( request: Request ): Promise<any> {
+    public apiPost ( request: Request ): Promise<any> {
         this.beforeSend( request );
         return this.http.post( this.getUrl( request ), JSON.stringify( request.data ) )
             .toPromise()
@@ -70,7 +70,7 @@ export class ApiService {
      * @param request
      * @returns {Promise<any>}
      */
-    public apiUpdate ( request: Request ): Promise<any> {
+    public apiPut ( request: Request ): Promise<any> {
         this.beforeSend( request );
         return this.http.put( this.getUrl( request ), JSON.stringify( request.data ) )
             .toPromise()
@@ -110,7 +110,7 @@ export class ApiService {
      * @returns {any}
      */
     private afterSend ( res: any ) {
-
+        return res;
     }
 
     /**

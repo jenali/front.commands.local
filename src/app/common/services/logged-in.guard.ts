@@ -52,5 +52,6 @@ export class LoggedInGuard implements CanActivate {
     public setToken($token:string):void {
         localStorage.setItem('Authorization',$token);
         this.loggedIn = true;
+        this.router.navigate(['commands'])
     }
 }
