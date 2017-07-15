@@ -16,4 +16,4 @@ npm install
 ```
 ng serve
 ```
-5. http://localhost:4200(http://localhost:4200)
+5. http://localhost:4200
