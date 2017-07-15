@@ -97,12 +97,13 @@ export class CommandsComponent implements OnInit {
             this.request = {
                 'url': this.commandsPath,
                 'data': this.createCommand,
-            }
+            };
             this.api.apiPost(this.request).then((res) => {
                 this.getList();
             })
         }
         this.createCommand = new Command();
+
     }
 
     /**
@@ -110,18 +111,20 @@ export class CommandsComponent implements OnInit {
      * @param save
      */
     protected onUpdate(save: boolean): void {
+        console.log(save);
         if (save) {
             this.request = {
                 'url': this.commandsPath,
                 'id': this.currentCommand.id,
                 'data': this.currentCommand,
-            }
+            };
             this.api.apiPut(this.request).then((res) => {
-                this.getList();
-            })
+
+            });
         }
         this.currentCommand = null;
         this.isEdit = false;
+        this.getList();
     }
 
 
@@ -144,10 +147,7 @@ export class CommandsComponent implements OnInit {
             'id': id
         };
         this.api.apiDelete(this.request).then((res) => {
-            let index = this.getCommandIndex(id);
-            if (index != -1) {
-                this.commands.splice(index, 1);
-            }
+            this.getList();
         })
     }
 
